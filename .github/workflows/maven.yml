@@ -30,5 +30,8 @@ jobs:
       run: mvn -B package --file pom.xml
     
     
+    - name: Kill port 80
+      run: sudo fuser -k 80/tcp 
+      
     - name: Execute Jar File
-      run: sudo fuser -k 80/tcp & sudo java -jar /home/ubuntu/actions-runner/_work/legendary-octo-engine/legendary-octo-engine/target/demo-0.0.1-SNAPSHOT.jar
+      run: sudo mvn springboot:run /home/ubuntu/actions-runner/_work/legendary-octo-engine/legendary-octo-engine/target/demo-0.0.1-SNAPSHOT.jar
